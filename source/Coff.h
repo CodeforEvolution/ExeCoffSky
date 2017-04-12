@@ -7,33 +7,21 @@
  * -------------------------------------------------------------------------------------------- */
 
 #if !defined(__Coff_h__)
-#	define	__Coff_h__
+#define	__Coff_h__
 
-#	if !defined(__Common_h__)
-#		include "Common.h"
-#	endif	// !defined(__Common_h__)
+#include <List.h>
+#include <Locker.h>
 
-#	if !defined(__CoffFileHeader_h__)
-#		include "CoffFileHeader.h"
-#	endif	// !defined(__CoffFileHeader_h__)
+#include <signal.h>
 
-#	if !defined(__OptionalHeader_h__)
-#		include "OptionalHeader.h"
-#	endif	// !defined(__OptionalHeader_h__)
+#include "Common.h"
+#include "CoffFileHeader.h"
+#include "OptionalHeader.h"
+#include "SectionHeader.h"
+#include "CoffSigSegv.h"
+#include "ResourceTable.h"
 
-#	if !defined(__SectionHeader_h__)
-#		include "SectionHeader.h"
-#	endif	// !defined(__SectionHeader_h__)
-
-#	if !defined(__CoffSigSegv_h__)
-#		include "CoffSigSegv.h"
-#	endif	// !defined(__CoffSigSegv_h__)
-
-#	if !defined(__ResourceTable_h__)
-#		include "ResourceTable.h"
-#	endif	// !defined(__ResourceTable_h__)
-
-#	define	ENABLE_DYNAMIC_RELOCATION
+#define	ENABLE_DYNAMIC_RELOCATION
 
 typedef enum _CoffError {
 	COFF_ERR_OK							= 0,
@@ -56,6 +44,13 @@ typedef enum _CoffType {
 	COFF_TYPE_DLL,
 } CoffType;
 
+typedef struct DllMain {
+	HINSTANCE aInstance;
+	DWORD aWord;
+	BOOL aBool;
+	LPVOID aVoid;
+} DllMain;
+
 abstract class Image {
 private:
 	int ref;
@@ -64,20 +59,20 @@ public:
 	virtual ~Image(void);
 	virtual int AddRef(void);
 	virtual int ReleaseRef(void);
-	virtual const char *GetFileName(void) const = NULL;
-	virtual void *GetAddressByOrder(int order) const = NULL;
-	virtual void *GetAddressByName(const char *name) const = NULL;
-	virtual void *GetEntryPoint(void) const = NULL;
-	virtual HINSTANCE GetInstance(void) const = NULL;
-	virtual DWORD GetVersion(void) const = NULL;
+	virtual const char *GetFileName(void);
+	virtual void *GetAddressByOrder(int order);
+	virtual void *GetAddressByName(const char *name);
+	virtual void *GetEntryPoint(void);
+	virtual HINSTANCE GetInstance(void);
+	virtual DWORD GetVersion(void);
 
-	virtual void *GetResourceAddress(void) const = NULL;
-	virtual LpResourceDataEntry FindResource(int type, int id) const = NULL;
+	virtual void *GetResourceAddress(void);
+	virtual LpResourceDataEntry FindResource(int type, int id);
 
-	virtual bool ProcessAttach(void) = NULL;
-	virtual bool ThreadAttach(void) = NULL;
-	virtual bool ThreadDetach(void) = NULL;
-	virtual bool ProcessDetach(void) = NULL;
+	virtual bool ProcessAttach(void);
+	virtual bool ThreadAttach(void);
+	virtual bool ThreadDetach(void);
+	virtual bool ProcessDetach(void);
 };
 
 #	if !defined(__Image__)
@@ -112,7 +107,7 @@ private:
 	HINSTANCE hInstance;
 	
 #if defined(ENABLE_DYNAMIC_RELOCATION)
-	__signal_func_ptr old_sigsegv;
+	__sighandler_t old_sigsegv;
 	BList varea_addr;
 	BList varea_size;
 #endif	// defined(ENABLE_DYNAMIC_RELOCATION)

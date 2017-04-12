@@ -84,9 +84,9 @@
 #		include <fcntl.h>
 #		include <time.h>
 #	endif	// !defined(__WINCE__) && !defined(__PALMOS__)
-#	if defined(__CYGWIN__) || defined(__BEOS__)
+#	if defined(__CYGWIN__) || defined(__BEOS__) || defined(__HAIKU__)
 #		include <errno.h>
-#	endif	// defined(__CYGWIN__)
+#	endif	// defined(__CYGWIN__) || defined(__BEOS__) || defined(__HAIKU__)
 #	if !defined(__PALMOS__)
 #		include <ctype.h>
 #	endif	// !defined(__PALMOS__)
@@ -100,9 +100,9 @@
 #		include <sys/stat.h>
 #	endif	// !defined(__MACOS__) && !defined(__WINCE__) && !defined(__MWERKS__) && !defined(__PALMOS__)
 
-#	if defined(__BEOS__) || (defined(HAVE_CONFIG_H) && defined(HAVE_GETOPT_H))
+#	if defined(__BEOS__) || defined(__HAIKU__) || (defined(HAVE_CONFIG_H) && defined(HAVE_GETOPT_H))
 #		include <getopt.h>
-#	endif	// defined(__BEOS__) || (defined(HAVE_CONFIG_H) && defined(HAVE_GETOPT_H))
+#	endif	// defined(__BEOS__) || defined(__HAIKU__) || (defined(HAVE_CONFIG_H) && defined(HAVE_GETOPT_H))
 
 #	if defined(__MWERKS__) || defined(__CYGWIN__)
 #		include <wchar.h>
@@ -194,7 +194,7 @@
 //
 // BeOS インクルード
 //////////////////////////////////////////////////////////////////////////////////////////////////
-#	if defined(__BEOS__)
+#	if defined(__BEOS__) || defined(__HAIKU__)
 #		if defined(_COM_GUID)
 #			define	GUID	BE_GUID
 #		endif	// defined(_WIN32GUID)
@@ -210,7 +210,7 @@
 #		if !defined(_NOUSE_BESOCKET)
 #			include "BeSocket.h"
 #		endif	// !defined(_NOUSE_BESOCKET)
-#	endif	// defined(__BEOS__)
+#	endif	// defined(__BEOS__) || defined(__HAIKU__)
 
 //
 // Macintosh インクルード
@@ -297,8 +297,9 @@
 typedef unsigned char BYTE, *PBYTE, *LPBYTE, UCHAR, *PUCHAR, *LPUCHAR;
 typedef unsigned short WORD, *PWORD, *LPWORD, USHORT, *PUSHORT, *LPUSHORT, ATOM, LANGID;
 typedef unsigned int WPARAM, *LPWPARAM, UINT, *PUINT, *LPUINT, MMRESULT, MCIDEVICEID, ALG_ID;
-typedef unsigned long DWORD, *PDWORD, *LPDWORD, ULONG, *PULONG, *LPULONG, LRESULT, MCIERROR, ACCESS_MASK, REGSAM;
+typedef unsigned long DWORD, *PDWORD, *LPDWORD, ULONG, ULONG_PTR, *PULONG, *LPULONG, LRESULT, MCIERROR, ACCESS_MASK, REGSAM;
 typedef DWORD LCID, LCTYPE, CALID, CALTYPE, FOURCC, COLORREF;
+typedef ULONG_PTR DWORD_PTR;
 typedef unsigned long long QWORD, *PQWORD, *LPQWORD, ULONGLONG, *PULONGLONG, *LPULONGLONG;
 typedef char CHAR, *PCHAR, *LPCHAR, STR, *PSTR, *LPSTR;
 typedef short SHORT, *PSHORT, *LPSHORT, WCHAR, *PWCHAR, *LPWCHAR, WSTR, *PWSTR, *LPWSTR;
@@ -391,9 +392,9 @@ typedef FARPROC PROC;
 //
 // COM互換の型の定義
 //////////////////////////////////////////////////////////////////////////////////////////////////
-#		if defined(__BEOS__) && !defined(_COM_GUID)
+#		if defined(__BEOS__) || defined(__HAIKU__) && !defined(_COM_GUID)
 #			define	GUID	COM_GUID
-#		endif	// defined(__BEOS__) && !defined(_COM_GUID)
+#		endif	// defined(__BEOS__) || defined(__HAIKU__) && !defined(_COM_GUID)
 typedef struct _GUID {
 	PACKED(DWORD Data1);
 	PACKED(WORD Data2);
@@ -402,9 +403,9 @@ typedef struct _GUID {
 } GUID, *LPGUID;
 typedef const GUID *REFGUID;
 
-#		if defined(__BEOS__) && !defined(_COM_GUID)
+#		if defined(__BEOS__) || defined(__HAIKU__) && !defined(_COM_GUID)
 #			undef GUID
-#		endif	// defined(__BEOS__) && !defined(_COM_GUID)
+#		endif	// defined(__BEOS__) || defined(__HAIKU__) && !defined(_COM_GUID)
 
 #		if defined(__cplusplus)
 #			define	REFCLSID	const CLSID &
@@ -507,9 +508,9 @@ typedef IID CLSID, *LPCLSID;
 
 //
 // 互換用関数の宣言
-#	if defined(__BEOS__) && defined(__POWERPC__)	// CodeWarrior系環境
+#	if defined(__BEOS__) || defined(__HAIKU__) && defined(__POWERPC__)	// CodeWarrior系環境
 int snprintf(char *str, size_t size, const char *format, ...);
-#	endif	// defined(__BEOS__) && defined(__POWERPC__)
+#	endif	// defined(__BEOS__) || defined(__HAIKU__) && defined(__POWERPC__)
 #	if defined(__WIN32__)
 size_t file_read(FILE_HANDLE fh, char *buf, size_t size);
 size_t file_write(FILE_HANDLE fh, char *buf, size_t size);
@@ -524,7 +525,7 @@ typedef HBITMAP	BITMAP_HANDLE;
 #				define	exit		_exit
 #			endif	// !defined(__WINCE__)
 #		endif	// defined(__VISUALC__)
-#	elif defined(__BEOS__)
+#	elif defined(__BEOS__) || defined(__HAIKU__)
 class BBitmap;
 typedef BBitmap *BITMAP_HANDLE;
 #	else	// defined(__WIN32__)
@@ -545,7 +546,7 @@ class wide2multi;
 // 互換用関数の実装
 #	if defined(__Main__)
 
-#		if defined(__BEOS__) && defined(__POWERPC__)
+#		if defined(__BEOS__) || defined(__HAIKU__) && defined(__POWERPC__)
 int
 snprintf
 (char *str, size_t size, const char *format, ...)
@@ -558,7 +559,7 @@ snprintf
 	va_end(list);
 	return result;
 }
-#		endif	// defined(__BEOS__) && defined(__POWERPC__)
+#		endif	// defined(__BEOS__) || defined(__HAIKU__) && defined(__POWERPC__)
 #		if defined(__WIN32__)
 size_t
 file_read
@@ -982,9 +983,9 @@ ___debug_puts
 		}
 		if (NULL != ___debug_file_handle) {
 			fprintf(___debug_file_handle, "%s", str);
-#				if defined(__MACOS__) || defined(__BEOS__) || defined(__WINCE__)
+#				if defined(__MACOS__) || defined(__BEOS__) || defined(__HAIKU__) || defined(__WINCE__)
 			fflush(___debug_file_handle);
-#				endif	// defined(__MACOS__) || defined(__BEOS__) || defined(__WINCE__)
+#				endif	// defined(__MACOS__) || defined(__BEOS__) || defined(__HAIKU__) || defined(__WINCE__)
 		}
 }
 #			endif	// !defined(__WIN32__) || (defined(__WINCE__) && !defined(_WIN32_WCE_EMULATION))

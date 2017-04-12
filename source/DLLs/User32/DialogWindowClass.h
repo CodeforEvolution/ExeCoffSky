@@ -6,6 +6,13 @@
  *  [DialogWindowClass.h]
  * -------------------------------------------------------------------------------------------- */
 
+#include "Common.h"
+#include "Dialog.h"
+
+#include "Win32Trace.h"
+#include "Window.h"
+#include "WindowClass.h"
+
 static LRESULT
 DialogProc
 (HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
@@ -32,7 +39,7 @@ DialogProc
 static WNDCLASSA
 DialogClass = {
 	0,
-	DialogProc,
+	(WNDPROC)DialogProc,
 	0,
 	0,
 	NULL, NULL, NULL, NULL,

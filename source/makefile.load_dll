@@ -61,7 +61,7 @@ RSRCS=
 #		naming scheme you need to specify the path to the library
 #		and it's name
 #		library: my_lib.a entry: my_lib.a or path/my_lib.a
-LIBS= be game textencoding
+LIBS= $(STDCPPLIBS) be game textencoding
 
 #	specify additional paths to directories following the standard
 #	libXXX.so or libXXX.a naming scheme.  You can specify full paths
@@ -131,13 +131,13 @@ DRIVER_PATH =
 ## include the makefile-engine
 include $(BUILDHOME)/etc/makefile-engine
 
-obj.x86/CoffSigSegv.o: CoffSigSegv.s
+objects%/CoffSigSegv.o: CoffSigSegv.s
 	as -o $@ $<
 
-obj.x86/InterlockAsm.o: DLLs/Kernel32/InterlockAsm.s
+objects%/InterlockAsm.o: DLLs/Kernel32/InterlockAsm.s
 	as -o $@ $<
 
-obj.x86/CallWindowProcAsm.o: DLLs/User32/CallWindowProcAsm.s
+objects%/CallWindowProcAsm.o: DLLs/User32/CallWindowProcAsm.s
 	as -o $@ $<
 
 $(OBJ_DIR)/%.o : %.c

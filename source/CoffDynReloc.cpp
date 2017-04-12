@@ -5,7 +5,11 @@
  * --------------------------------------------------------------------------------------------
  *  [CoffDynReloc.cpp]
  * -------------------------------------------------------------------------------------------- */
+
+#include <signal.h>
+
 #include "Coff.h"
+
 #if defined(ENABLE_DYNAMIC_RELOCATION)
 
 #	if defined(DISABLE_DYNRELOC_LOG)
@@ -26,7 +30,7 @@ Coff::SetSignal
 {
 	CoffError rc = COFF_ERR_UNKNOWN;
 	struct sigaction sa;
-	sa.sa_handler = (__signal_func_ptr)CoffSigSegv;
+	sa.sa_handler = (__sighandler_t)CoffSigSegv;
 	sa.sa_mask = 0;
 	sa.sa_flags = 0;
 	sa.sa_userdata = (void *)this;

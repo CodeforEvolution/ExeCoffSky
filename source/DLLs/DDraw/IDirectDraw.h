@@ -46,65 +46,65 @@ interface IDirectDraw: public IUnknown {
 */
 	// IDirectDraw
 	STDMETHOD(Compact)(
-		VOID) PURE;
+		VOID);
 	STDMETHOD(CreateClipper)(
 		IN DWORD dwFlags,
 		OUT LPDIRECTDRAWCLIPPER FAR *lplpDDClipper,
-		OUT IUnknown FAR *pUnkOuter) PURE;
+		OUT IUnknown FAR *pUnkOuter);
 	STDMETHOD(CreatePalette)(
 		IN DWORD dwFlags,
 		IN LPPALETTEENTRY lpDDColorArray,
 		OUT LPDIRECTDRAWPALETTE FAR *lplpDDPalette,
-		OUT IUnknown FAR *pUnkOuter) PURE;
+		OUT IUnknown FAR *pUnkOuter);
 	STDMETHOD(CreateSurface)(
 		IN LPDDSURFACEDESC lpDDSurfaceDesc,
 		OUT LPDIRECTDRAWSURFACE FAR *lpDDSurface,
-		OUT IUnknown FAR *pUnkOuter) PURE;
+		OUT IUnknown FAR *pUnkOuter);
 	STDMETHOD(DuplicateSurface)(
 		IN LPDIRECTDRAWSURFACE lpDDSurface,
-		OUT LPDIRECTDRAWSURFACE FAR *lplpDupDDSurface) PURE;
+		OUT LPDIRECTDRAWSURFACE FAR *lplpDupDDSurface);
 	STDMETHOD(EnumDisplayModes)(
 		IN DWORD dwFlags,
 		IN LPDDSURFACEDESC lpDDSurfaceDesc,
 		IN LPVOID lpContext,
-		IN LPDDENUMMODESCALLBACK lpEnumModesCallback) PURE;
+		IN LPDDENUMMODESCALLBACK lpEnumModesCallback);
 	STDMETHOD(EnumSurfaces)(
 		IN DWORD dwFlags,
 		IN LPDDSURFACEDESC lpDDSurfaceDesc,
 		IN LPVOID lpContext,
-		IN LPDDENUMSURFACESCALLBACK lpEnumSurfacesCallback) PURE;
+		IN LPDDENUMSURFACESCALLBACK lpEnumSurfacesCallback);
 	STDMETHOD(FlipToGDISurface)(
-		VOID) PURE;
+		VOID);
 	STDMETHOD(GetCaps)(
 		OUT LPDDCAPS lpDDDriverCaps,
-		OUT LPDDCAPS lpDDHelCaps) PURE;
+		OUT LPDDCAPS lpDDHelCaps);
 	STDMETHOD(GetDisplayMode)(
-		OUT LPDDSURFACEDESC lpDDSurfaceDesc) PURE;
+		OUT LPDDSURFACEDESC lpDDSurfaceDesc);
 	STDMETHOD(GetFourCCCodes)(
 		IN OUT LPDWORD lpNumCodes,
-		OUT LPDWORD lpCodes) PURE;
+		OUT LPDWORD lpCodes);
 	STDMETHOD(GetGDISurface)(
-		OUT LPDIRECTDRAWSURFACE FAR *lplpGDIDDSSurface) PURE;
+		OUT LPDIRECTDRAWSURFACE FAR *lplpGDIDDSSurface);
 	STDMETHOD(GetMonitorFrequency)(
-		OUT LPDWORD lpdwFrequency) PURE;
+		OUT LPDWORD lpdwFrequency);
 	STDMETHOD(GetScanLine)(
-		OUT LPDWORD lpdwScanLine) PURE;
+		OUT LPDWORD lpdwScanLine);
 	STDMETHOD(GetVerticalBlankStatus)(
-		OUT LPBOOL lpbIsInVB) PURE;
+		OUT LPBOOL lpbIsInVB);
 	STDMETHOD(Initialize)(
-		GUID FAR *lpGIUD) PURE;
+		GUID FAR *lpGIUD);
 	STDMETHOD(RestoreDisplayMode)(
-		VOID) PURE;
+		VOID);
 	STDMETHOD(SetCooperativeLevel)(
 		IN HWND hWnd,
-		IN DWORD dwFlags) PURE;
+		IN DWORD dwFlags);
 	STDMETHOD(SetDisplayMode)(
 		IN DWORD dwWidth,
 		IN DWORD dwHeight,
-		IN DWORD dwBPP) PURE;
+		IN DWORD dwBPP);
 	STDMETHOD(WaitForVerticalBlank)(
 		IN DWORD dwFlags,
-		IN HANDLE hEvent) PURE;
+		IN HANDLE hEvent);
 	END_INTERFACE
 };
 

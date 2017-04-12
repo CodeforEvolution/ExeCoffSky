@@ -143,7 +143,7 @@ ButtonCreateCustomView
 static WNDCLASSA
 ButtonClass = {
 	0,
-	ButtonProc,
+	(WNDPROC)ButtonProc,
 	0,
 	0,
 	NULL, NULL, NULL, NULL,

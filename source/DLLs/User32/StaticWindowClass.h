@@ -8,6 +8,9 @@
 #include "LoadResources.h"
 #include "DeviceContext.h"
 #include "Window.h"
+#include "Win32Trace.h"
+#include "Win32Error.h"
+#include "Win32String.h"
 #include "User32.h"	// InvalidateRect
 #include "GDI32/Object.h"
 #include "GDI32/Bitmap.h"
@@ -54,7 +57,8 @@ private:
 public:
 	BitmapView(HINSTANCE hInstance, BRect rect, LPCSTR lpTitle, DWORD &style):
 	BView(rect, "win32 static", 0, B_WILL_DRAW),
-	window(NULL) {
+	window(NULL)
+{
 		WIN32API_INFO("\tBitmapView (%f, %f) - (%f, %f)\n", rect.left, rect.top, rect.right, rect.bottom);
 		LPCWSTR lpTitleW;
 		Win32String title;
@@ -85,14 +89,20 @@ public:
 		}
 		drawRect.right = (w > bw)? bw: w;
 		drawRect.bottom = (h > bh)? bh: h;
-	};
-	~BitmapView(void) {
-		if (NULL != hBitmap) DeleteObject(hBitmap);
-	};
-	void Initialize(LocalWindow *lwnd, LPCREATESTRUCT cs) {
-		window = lwnd;
-	};
-	void Draw(BRect rect) {
+};
+
+~BitmapView(void)
+{
+	if (NULL != hBitmap) DeleteObject(hBitmap);
+};
+
+void Initialize(LocalWindow *lwnd, LPCREATESTRUCT cs)
+{
+	window = lwnd;
+};
+
+void Draw(BRect rect) 
+{
 		WIN32API_INFO("\tBitmapView::Draw (%f, %f) - (%f, %f)\n", rect.left, rect.top, rect.right, rect.bottom);
 		if (NULL == window) return;
 		RECT r;
@@ -208,7 +218,7 @@ StaticCreateCustomView
 static WNDCLASSA
 StaticClass = {
 	0,
-	StaticProc,
+	(WNDPROC)StaticProc,
 	0,
 	0,
 	NULL, NULL, NULL, NULL,

@@ -5,6 +5,12 @@
  * --------------------------------------------------------------------------------------------
  *  [WindowClass.cpp]
  * -------------------------------------------------------------------------------------------- */
+
+#include "DialogWindowClass.h"
+#include "StaticWindowClass.h"
+#include "ButtonWindowClass.h"
+#include "EditWindowClass.h"
+
 #include "WindowClass.h"
 #include "Dialog.h"
 #include "Win32Trace.h"
@@ -308,8 +314,3 @@ UnregisterClassW
 	WIN32API_LEAVE(rc);
 	return rc;
 }
-
-#include "DialogWindowClass.h"
-#include "StaticWindowClass.h"
-#include "ButtonWindowClass.h"
-#include "EditWindowClass.h"

@@ -265,7 +265,7 @@ public:
 	Window(void);
 	virtual ~Window(void);
 
-	virtual DeviceContext *GetDeviceContext(void) const = NULL;
+	virtual DeviceContext *GetDeviceContext(void);
 
 	bool AddTimer(Timer *timer);
 	bool RemoveTimer(Timer *timer);
@@ -279,22 +279,22 @@ public:
 	bool RemoveChild(Window *window);
 	BOOL EnumChildWindows(WNDENUMPROC lpEnumProc, LPARAM lParam);
 
-	virtual bool Show(bool show) = NULL;
-	virtual bool GetTitle(LPSTR lpTitle, UINT &uSize) = NULL;
-	virtual bool SetTitle(LPCSTR lpTitle) = NULL;
-	virtual BOOL GetWindowRect(LPRECT lpRect) = NULL;
-	virtual BOOL SetWindowPos(HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) = NULL;
+	virtual bool Show(bool show);
+	virtual bool GetTitle(LPSTR lpTitle, UINT &uSize);
+	virtual bool SetTitle(LPCSTR lpTitle);
+	virtual BOOL GetWindowRect(LPRECT lpRect);
+	virtual BOOL SetWindowPos(HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags);
 
-	virtual LRESULT SendMessage(LPCMSG lpMsg) = NULL;
-	virtual LRESULT SendMessage(UINT Msg, WPARAM wParam, LPARAM lParam) = NULL;
-	virtual BOOL PostMessage(LPCMSG lpMsg) = NULL;
-	virtual BOOL PostMessage(UINT Msg, WPARAM wParam, LPARAM lParam) = NULL;
+	virtual LRESULT SendMessage(LPCMSG lpMsg);
+	virtual LRESULT SendMessage(UINT Msg, WPARAM wParam, LPARAM lParam);
+	virtual BOOL PostMessage(LPCMSG lpMsg);
+	virtual BOOL PostMessage(UINT Msg, WPARAM wParam, LPARAM lParam);
 
 	virtual LONG GetWindowLong(int nIndex);
 	virtual LONG SetWindowLong(int nIndex, LONG newLong);
 	
-	virtual void ClientToScreen(LPPOINT lpPoint) = NULL;
-	virtual void ScreenToClient(LPPOINT lpPoint) = NULL;
+	virtual void ClientToScreen(LPPOINT lpPoint);
+	virtual void ScreenToClient(LPPOINT lpPoint);
 
 	virtual void Update(BBitmap *bmp, LPRECT rect = NULL);
 

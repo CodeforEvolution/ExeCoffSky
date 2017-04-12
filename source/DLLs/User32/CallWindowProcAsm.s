@@ -35,6 +35,8 @@ CallWindowProcAsm:
 	popl	%ebp
 	ret
 	nop
-.Lfel:
-
-	.size	CallWindowProcAsm,.Lfel - main
+	
+#.Lfel:
+#
+#	.size	CallWindowProcAsm,.Lfel - main
+#

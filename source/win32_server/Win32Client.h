@@ -9,11 +9,13 @@
 #if !defined(__Win32Client_h__)
 #	define	__Win32Client_h__
 
+#include <Application.h>
+
 #	if !defined(__Common_h__)
 #		include "Common.h"
 #	endif	// !defined(__Common_h__)
 
-#	define	WIN32CLIENT_TYPE	"application/x-vnd.toyoshima-house.win32-client"
+#define	WIN32CLIENT_TYPE	"application/x-vnd.toyoshima-house.win32-client"
 
 class Win32Client: public BApplication {
 private:

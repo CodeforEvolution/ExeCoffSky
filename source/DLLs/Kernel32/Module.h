@@ -61,7 +61,7 @@ public:
 extern "C" {
 #	endif	// defined(__cplusplus)
 
-Image *HandleToImage(HMODULE hModule);
+static Image *HandleToImage(HMODULE hModule);
 static bool FindModule(BString &filepath, LPCSTR lpFileName);
 
 static DWORD GetModuleFileNameU(HMODULE hModule, LPSTR lpFilename, DWORD nSize);

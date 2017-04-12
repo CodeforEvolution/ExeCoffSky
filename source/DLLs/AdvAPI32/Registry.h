@@ -137,10 +137,10 @@ LONG WINAPI RegOpenKeyExA(HKEY hKey, LPCSTR lpSubKey, DWORD ulOptions, REGSAM sa
 LONG WINAPI RegOpenKeyExW(HKEY hKey, LPCWSTR lpSubKey, DWORD ulOptions, REGSAM samDesired, PHKEY phkResult);
 LONG WINAPI RegQueryInfoKeyA(HKEY hKey, LPSTR lpClass, LPDWORD lpcbClass, LPDWORD lpReserved,
 	LPDWORD lpcSubKeys, LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues,
-	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime);
+	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime);
 LONG WINAPI RegQueryInfoKeyW(HKEY hKey, LPWSTR lpClass, LPDWORD lpcbClass, LPDWORD lpReserved,
 	LPDWORD lpcSubKeys, LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues,
-	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime);
+	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime);
 LONG WINAPI RegQueryMultipleValuesA(HKEY hKey, PVALENTA val_list, DWORD num_vals, LPSTR lpValueBuf, LPDWORD ldwTotsize);
 LONG WINAPI RegQueryMultipleValuesW(HKEY hKey, PVALENTW val_list, DWORD num_vals, LPWSTR lpValueBuf, LPDWORD ldwTotsize);
 LONG WINAPI RegQueryValueA(HKEY hKey, LPCSTR lpSubKey, LPSTR lpValue, PLONG lpcbValue);

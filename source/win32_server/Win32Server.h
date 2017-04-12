@@ -13,6 +13,9 @@
 #		include "Common.h"
 #	endif	// !defined(__Common_h__)
 
+#include <Application.h>
+#include <Path.h>
+
 #	define	MAX_REQUEST_SIZE	1024
 
 #	define	WIN32SERVER_TYPE	"application/x-vnd.toyoshima-house.win32-server"

@@ -48,7 +48,7 @@ EditCreateCustomView
 static WNDCLASSA
 EditClass = {
 	0,
-	EditProc,
+	(WNDPROC)EditProc,
 	0,
 	0,
 	NULL, NULL, NULL, NULL,

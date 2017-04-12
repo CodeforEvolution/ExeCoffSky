@@ -161,9 +161,7 @@ BuiltInModule dsound("DSOUND.dll", DSound_GetAddressByOrder, DSound_GetAddressBy
 
 #endif	// defined(_BUILTIN_DLL)
 
-static Image *
-HandleToImage
-(HMODULE hModule)
+static Image *HandleToImage(HMODULE hModule)
 {
 	WIN32API_INTERNAL_START();
 	if (TRUE == IsBadReadPtr(hModule, sizeof(DWORD))) hModule = NULL;

@@ -6,6 +6,14 @@
  *  [Win32Server.cpp]
  * TODO: 子プロセスが死んだ際の、グローバルリソースの開放。
  * -------------------------------------------------------------------------------------------- */
+
+#include <Entry.h>
+#include <File.h>
+#include <MimeType.h>
+#include <Path.h>
+#include <Resources.h>
+#include <Roster.h>
+
 #include "Win32Server.h"
 #include "Win32Client.h"
 

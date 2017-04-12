@@ -5,6 +5,9 @@
  * --------------------------------------------------------------------------------------------
  *  [Coff.cpp]
  * -------------------------------------------------------------------------------------------- */
+
+#include <OS.h>
+
 #include "Coff.h"
 #include "ImportDirectoryTable.h"
 #include "ExportDirectoryTable.h"
@@ -276,37 +279,59 @@ bool
 Coff::ProcessAttach
 (void)
 {
-	BOOL WINAPI (*DllMain)(HINSTANCE, DWORD, LPVOID);
-	DllMain = (BOOL (*)(HINSTANCE, DWORD, LPVOID))GetEntryPoint();
-	if (NULL == DllMain) return false;
-	return (TRUE == DllMain((HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase), 1, NULL));
+	DllMain *dllmain;
+	dllmain->aBool = (BOOL)GetEntryPoint();
+	
+	if (NULL == dllmain->aBool) 
+		return false;
+	
+	dllmain->aInstance = (HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase);
+	dllmain->aWord = 1;
+	dllmain-> aVoid = NULL;
+
+	return (TRUE == dllmain->aBool);
 }
 
 bool
 Coff::ThreadAttach
 (void)
 {
-	BOOL WINAPI (*DllMain)(HINSTANCE, DWORD, LPVOID);
-	DllMain = (BOOL (*)(HINSTANCE, DWORD, LPVOID))GetEntryPoint();
-	return (TRUE == DllMain((HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase), 2, NULL));
+	DllMain *dllmain;
+	dllmain->aBool = (BOOL)GetEntryPoint();
+	
+	dllmain->aInstance = (HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase);
+	dllmain->aWord = 2;
+	dllmain-> aVoid = NULL;
+
+	return (TRUE == dllmain->aBool);
 }
 
 bool
 Coff::ThreadDetach
 (void)
 {
-	BOOL WINAPI (*DllMain)(HINSTANCE, DWORD, LPVOID);
-	DllMain = (BOOL (*)(HINSTANCE, DWORD, LPVOID))GetEntryPoint();
-	return (TRUE == DllMain((HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase), 3, NULL));
+	DllMain *dllmain;
+	dllmain->aBool = (BOOL)GetEntryPoint();
+	
+	dllmain->aInstance = (HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase);
+	dllmain->aWord = 3;
+	dllmain-> aVoid = NULL;
+
+	return (TRUE == dllmain->aBool);
 }
 
 bool
 Coff::ProcessDetach
 (void)
 {
-	BOOL WINAPI (*DllMain)(HINSTANCE, DWORD, LPVOID);
-	DllMain = (BOOL (*)(HINSTANCE, DWORD, LPVOID))GetEntryPoint();
-	return (TRUE == DllMain((HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase), 4, NULL));
+	DllMain *dllmain;
+	dllmain->aBool = (BOOL)GetEntryPoint();
+	
+	dllmain->aInstance = (HINSTANCE)((DWORD)sctmem[0] - winfldptr->imageBase);
+	dllmain->aWord = 4;
+	dllmain-> aVoid = NULL;
+
+	return (TRUE == dllmain->aBool);
 }
 
 CoffError

@@ -25,11 +25,11 @@ interface IUnknown {
 	BEGIN_INTERFACE
 	virtual HRESULT STDMETHODCALLTYPE QueryInterface(
 		IN REFIID riid,
-		OUT LPVOID *ppvObject) = NULL;
+		OUT LPVOID *ppvObject);
 	virtual ULONG STDMETHODCALLTYPE AddRef(
-		VOID) = NULL;
+		VOID);
 	virtual ULONG STDMETHODCALLTYPE Release(
-		VOID) = NULL;
+		VOID);
 	END_INTERFACE
 };
 

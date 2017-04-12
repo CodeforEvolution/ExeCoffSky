@@ -35,6 +35,8 @@ CoffSigSegv:
 	popl	%ebp
 	ret
 	nop
-.Lfel:
-
-	.size	CoffSigSegv,.Lfel - main
+	
+#.Lfel:
+#
+#	.size	CoffSigSegv,.Lfel - main
+#

@@ -12,8 +12,8 @@
 #include "Win32Error.h"
 #include "Win32String.h"
 
-#define WIN_HOME			"/boot/home/config/windows"
-#define REG_HOME			"/boot/home/config/windows/registry"
+#define WIN_HOME			"/boot/home/config/settings/windows"
+#define REG_HOME			"/boot/home/config/settings/windows/registry"
 #define IS_SYSHKEY(hKey)	(((ULONG)HKEY_CLASSES_ROOT <= (ULONG)hKey) && ((ULONG)hKey <= (ULONG)HKEY_DYN_DATA))
 
 char *
@@ -528,10 +528,12 @@ RegOpenKeyExW
 
 extern "C" LONG WINAPI
 RegQueryInfoKeyA
-(HKEY arg0, LPSTR arg1, PDWORD arg2, PDWORD arg3, PDWORD arg4, PDWORD arg5, PDWORD arg6, PDWORD arg7, PDWORD arg8, PDWORD arg9, PDWORD arg10, PFILETIME arg11)
+(HKEY hKey, LPSTR lpClass, LPDWORD lpcbClass, LPDWORD lpReserved, 
+	LPDWORD lpcSubKeys, LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues,
+	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime)
 {
 	LONG rc = ERROR_CALL_NOT_IMPLEMENTED;
-	WIN32API_ENTER("LONG", "RegQueryInfoKeyA", "HKEY", arg0, "LPSTR", arg1, "PDWORD", arg2, "PDWORD", arg3, "PDWORD", arg4, "PDWORD", arg5, "PDWORD", arg6, "PDWORD", arg7, "PDWORD", arg8, "PDWORD", arg9, "PDWORD", arg10, "PFILETIME", arg11, NULL);
+	WIN32API_ENTER("LONG", "RegQueryInfoKeyA", "HKEY", hKey, "LPSTR", lpClass, "LPDWORD", lpcbClass, "LPDWORD", lpReserved, "LPDWORD", lpcSubKeys, "LPDWORD", lpcbMaxSubKeyLen, "LPDWORD", lpcbMaxClassLen, "LPDWORD", lpcValues, "LPDWORD", lpcbMaxValueNameLen, "LPDWORD", lpcbMaxValueLen, "PFILETIME", lpftLastWriteTime, NULL);
 	WIN32API_INFO("\tnot impl.\n");
 	WIN32API_LEAVE(rc);
 	return rc;
@@ -539,10 +541,14 @@ RegQueryInfoKeyA
 
 extern "C" LONG WINAPI
 RegQueryInfoKeyW
-(HKEY arg0, LPWSTR arg1, PDWORD arg2, PDWORD arg3, PDWORD arg4, PDWORD arg5, PDWORD arg6, PDWORD arg7, PDWORD arg8, PDWORD arg9, PDWORD arg10, PFILETIME arg11)
+(HKEY hKey, LPWSTR lpClass, LPDWORD lpcbClass, LPDWORD lpReserved,
+	LPDWORD lpcSubKeys, LPDWORD lpcbMaxSubKeyLen, LPDWORD lpcbMaxClassLen, LPDWORD lpcValues,
+	LPDWORD lpcbMaxValueNameLen, LPDWORD lpcbMaxValueLen, PFILETIME lpftLastWriteTime)
 {
 	LONG rc = ERROR_CALL_NOT_IMPLEMENTED;
-	WIN32API_ENTER("LONG", "RegQueryInfoKeyW", "HKEY", arg0, "LPWSTR", arg1, "PDWORD", arg2, "PDWORD", arg3, "PDWORD", arg4, "PDWORD", arg5, "PDWORD", arg6, "PDWORD", arg7, "PDWORD", arg8, "PDWORD", arg9, "PDWORD", arg10, "PFILETIME", arg11, NULL);
+	WIN32API_ENTER("LONG", "RegQueryInfoKeyW", "HKEY", hKey, "LPWSTR", lpClass, "LPDWORD", lpcbClass, "LPDWORD", lpReserved,
+	"LPDWORD", lpcSubKeys, "LPDWORD", lpcbMaxSubKeyLen, "LPDWORD", lpcbMaxClassLen, "LPDWORD", lpcValues,
+	"LPDWORD", lpcbMaxValueNameLen, "LPDWORD", lpcbMaxValueLen, "PFILETIME", lpftLastWriteTime, NULL);
 	WIN32API_INFO("\tnot impl.\n");
 	WIN32API_LEAVE(rc);
 	return rc;
